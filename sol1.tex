@@ -213,7 +213,61 @@ The log of a negative number is not defined in terms of real numbers. We shall p
 that the limit is not defined:
 \begin{align}
   \langle x \rangle = 
-  \lim_{}
+  \lim_{T \rightarrow \infty} \int_{-T}^{aT} \frac{x}{\pi} \frac{1}{1+x^2} dx =
+  \lim_{T \rightarrow \infty} \frac{1}{2 \pi} \log\left(\frac{1+(aT)^2}{1+T^2} \right) =  \\
+  \frac{1}{2 \pi} \lim_{T \rightarrow \infty} 
+   \log\left(  \frac{   T^{2} ( T^{-2}+a^2)}{ T^2 ( T^{-2} +1)} \right) =
+   \frac{1}{ 2 \pi} \log(a^2)
 \end{align}
+Thus the average value can take an arbitrary value and is not uniquely definied.
+The same is true for  \langle | x |  \rangle 
+Next we compute the second moment:
+\begin{align}
+  \langle x^2 \rangle =\frac{1}{\pi} \int_{-\infty}^{+\infty} \frac{x^2}{1+x^2} dx =
+  \frac{1}{\pi} \int_{-\infty}^{+\infty} \frac{1+x^2-1}{1+x^2} dx =
+  \frac{1}{\pi} \left(\int_{-\infty}^{+\infty} dx - \pi \right) = \infty
+\end{align}
+
+Below we show 10 Cauchy-random walks with $n=200$ steps (s. Fig.~\ref{fig:abb6}). We find that many
+of the Trajectories have a large deviation of more than 1000 from zero.
+
+However $x=0$ is the intuitive value one would expect from looking only at the distribution plot of the Cauchy distribution.
+This is due to the infinite MSD and because the average value can take arbitrary values as shown above.
+
+
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.45\linewidth]{./figures/JanWeinreich_P1_4a.png}
+    \includegraphics[width=0.45\linewidth]{./figures/JanWeinreich_P1_4b.png}
+    \caption{Left: 10 Cauchy random walks. Right: The running average of the particle position for
+    over $N=200$ independent trajectories.}
+    \label{fig:abb6}
+  \end{figure}
+
+  Next we consider the running average of the particle positions over $N=200$ independent trajectories.
+  \begin{align}
+    \bar{x}_{n} = \sum_{i=0}^{n-1} x_{i}/n
+  \end{align}
+  We find that the running average converges very fast for the gaussian distribution. For the 
+  Cauchy distribution However we find very large deviation from the intuitive but wrong 
+  expectation value zero. This is again due to the fact that the expectation value is ill defined
+  and due to infinite standart deviation. Thus we cannot expected this quantities to be defined and
+  this will not be different for large sampling sizes.
+
+
+
+  Next we consider the distribution of the mean values of the 
+  Cauchy random walks, shown in Fig.~\ref{fig:abb7}.
+  It appears the average value is equally distribed with accross the real numbers.
+  This is plausible because we have shown that the first momentum of
+  the Cauchy distribution can take arbitrary values.
+  \begin{figure}[H]
+    \centering
+      \includegraphics[width=0.45\linewidth]{./figures/JanWeinreich_P1_4c.png}
+      \caption{In blue: Distibution of the average positions of 200 independent
+      Cauchy Walkers. }
+      \label{fig:abb7}
+    \end{figure}
 
 \end{document}
