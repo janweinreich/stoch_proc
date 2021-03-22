@@ -7,10 +7,10 @@
 \usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
 \usepackage{fancyhdr}
 \usepackage{titlesec}
-
+ 
 \pagestyle{empty}
 \titleformat*{\section}{\large\bfseries}
-
+ 
 %
 \geometry{
  a4paper,
@@ -18,14 +18,14 @@
  left=20mm,
  top=30mm,
  }
-
+ 
 \date{}
 %Bitte ausfüllen
 \newcommand\course{Stochastic Processes in Physics}
 \newcommand\hwnumber{1}
 \newcommand\Name{Jan Weinreich}
 \newcommand\Neptun{Uni Vienna}
-
+ 
 %Matheinheiten
 \newcommand\m{\:\textrm{m}}
 \newcommand\M{\:\Big[\textrm{m}\Big]}
@@ -38,7 +38,7 @@
 \newcommand\MS{\:\Big[\frac{\textrm{m}}{\textrm{s}}\Big]}
 \newcommand\mss{\:\frac{\textrm{m}}{\textrm{s}^2}}
 \newcommand\MSS{\:\Big[\frac{\textrm{m}}{\textrm{s}^2}\Big]}
-
+ 
 %Bitte nicht einstellen
 \renewcommand{\figurename}{Abbildung}
 \renewcommand{\tablename}{Tabelle}
@@ -51,14 +51,14 @@
 \cfoot{}
 \rfoot{\small\thepage}
 \headsep 1.5em
-
+ 
 \begin{document}
-
-
-
+ 
+ 
+ 
 %include svg files
-
-
+ 
+ 
 \section{Random Walks}
 \begin{figure}[H]
   \centering
@@ -66,15 +66,15 @@
     \includegraphics[width=0.45\linewidth]{./figures/JanWeinreich_P1_1b.png}
     \caption{Left: Mean squared deviation of a random walker with gaussian noise, 
              numerical (num) and theoretical curve (ex).  
-             Right: Histogram of random walkter position $x$ after $n=2, 5, 20, 100$ steps and solution to the diffision 
+             Right: Histogram of random walker position $x$ after $n=2, 5, 20, 100$ steps and solution to the diffusion 
              Eq.~(\ref{eq:diff1}) for $t= n=100$.}
     \label{fig:abb1}
   \end{figure}
-
-
+ 
+ 
 The solution for the probability density $\rho$ for a particle
 initially at $x=0$ for $t=0$ to be located at position $x$ at time $t$ is given by
-
+ 
 \begin{align}
     \rho (x, t) = \frac{1}{\sqrt{4 \pi t}} \exp{   \left( -\frac{x^2}{4Dt} \right) }
 \end{align}  
@@ -86,11 +86,11 @@ Thus we have,
   \label{eq:diff1}
 \end{align}
 In Fig.~\ref{fig:abb1} we show Eq.~\ref{{eq:diff1} for $D=1$ and $t= n=100$.
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
 We consider a walker with steps of fixed size $\Delta x = \pm 1 $ with equal probabilities for  both directions.
 We introduce a random variable $s_i$:
 \[   
@@ -100,19 +100,19 @@ s_i =
        -1 & \text{, if }\Delta x = -1 \\
      \end{cases}
 \]
-
-
-
+ 
+ 
+ 
 \begin{align}
   \langle x^2 \rangle  = \sum_{i, j}^n s_i s_j = \sum_{i}^n s_i s_i  + \sum_{i \neq j}^n s_i s_j
   = \sum_{i}^n s_i s_i  = \sum_{i}^n s_{i}^2 = \sum_{i}^n s_i s_i  = \sum_{i}^n 1 = n  
 \end{align}
 Note that the sum $\sum_{i \neq j}^n s_i s_j$ averages to zero, since the contributions are alternating with
 equal positive and negative amplitude.
-
-
-
-
+ 
+ 
+ 
+ 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.45\linewidth]{./figures/JanWeinreich_P1_2b.png}
@@ -121,27 +121,27 @@ equal positive and negative amplitude.
             Gaussian case.}
     \label{fig:abb2}
   \end{figure}
-
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
+ 
 In Fig.~\ref{fig:abb2} we see that the main difference between the solution to the diffusion
-problem with $\Delta x = \pm 1$ and gaussian noise is the prefactor in the diffision constant.
+problem with $\Delta x = \pm 1$ and gaussian noise is the prefactor in the diffusion constant.
 The mean squared displacement (MSD) from the diffusion equation is twice as large which leads to
 a wider spread of $\rho$ compared to the Stirling approximation.
-
+ 
 \section{Weird and Strange Walkers}
-
+ 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.45\linewidth]{./figures/trajectory_weirdwalker.png}
-    \caption{Trajectory of the 2-dimensional continous weird walker in blue. We find that the 
-            motion is somewhat restricted to the area encirceled in red.}
+    \caption{Trajectory of the 2-dimensional continuous weird walker in blue. We find that the 
+            motion is somewhat restricted to the area encircled in red.}
     \label{fig:abb3}
   \end{figure}
-In Fig.~\ref{fig:abb3} we show the motion of the 2-dimensional continous weird walker.
+In Fig.~\ref{fig:abb3} we show the motion of the 2-dimensional continuous weird walker.
 We find that the motion appears to be restricted to a certain radius from the origin at $(0,0)$.
 To confirm this suspicion we compute the MSD as shown in Fig.~\ref{fig:abb4}. We find that the 
 MSD appears to have an upper limit at $\lim_{t \rightarrow \infty} \langle x^2 \rangle (t) = 2$.
@@ -149,30 +149,30 @@ Occasionally this barrier can be overcome, but on average the motion is restrict
 radius of $\sqrt{2}$ which is shown as a red circle in Fig.~\ref{fig:abb3}. Thus this data cannot
 originate from the Brownian motion of a solute particle in water. An alternative explanation would be that
 there is an isotropic force that pulls the walkter back to the center.
-
-
+ 
+ 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.45\linewidth]{./figures/msd_weirdwalker.png}
-    \caption{MSD of the 2-dimensional continous weird walker.}
+    \caption{MSD of the 2-dimensional continuous weird walker.}
     \label{fig:abb4}
   \end{figure}
-
-
+ 
+ 
 Next we consider the Strange walker in 2-dim and study a plot of its MSD in Fig.~\ref{fig:abb4}. We find
 that the MSD increases linearly as it would be expected for a typical diffusion process (apart from the fact
-that the motion is not continous). To compute the MSD the average was computed over all 350 trajectories.
-
+that the motion is not continuous). To compute the MSD the average was computed over all 350 trajectories.
+ 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.45\linewidth]{./figures/msd_strangewalker.png}
     \label{fig:abb5}
   \end{figure}
-
-
+ 
+ 
 \section{Cauchy Walkers}
-
-We show that the standart-Cauchy distribution is normalized. Start with:
+ 
+We show that the standard-Cauchy distribution is normalized. Start with:
 \begin{align}
   \int_{-\infty}^{+\infty} \frac{1}{1+x^2}
 \end{align}
@@ -199,8 +199,8 @@ And thus:
     \frac{1}{\pi} \int_{-\infty}^{+\infty} \frac{1}{1+x^2} = 1
   \end{align}
 \end{align}
-
-Next we try the impossible: To compute the average value of the standart Cauchy distribution:
+ 
+Next we try the impossible: To compute the average value of the standard Cauchy distribution:
 \begin{align}
   \langle x \rangle = \frac{1}{\pi}  \int_{-\infty}^{+\infty} \frac{x}{1+x^2}
 \end{align}
@@ -219,7 +219,7 @@ that the limit is not defined:
    \log\left(  \frac{   T^{2} ( T^{-2}+a^2)}{ T^2 ( T^{-2} +1)} \right) =
    \frac{1}{ 2 \pi} \log(a^2)
 \end{align}
-Thus the average value can take an arbitrary value and is not uniquely definied.
+Thus the average value can take an arbitrary value and is not uniquely defined.
 The same is true for  \langle | x |  \rangle 
 Next we compute the second moment:
 \begin{align}
@@ -227,15 +227,15 @@ Next we compute the second moment:
   \frac{1}{\pi} \int_{-\infty}^{+\infty} \frac{1+x^2-1}{1+x^2} dx =
   \frac{1}{\pi} \left(\int_{-\infty}^{+\infty} dx - \pi \right) = \infty
 \end{align}
-
+ 
 Below we show 10 Cauchy-random walks with $n=200$ steps (s. Fig.~\ref{fig:abb6}). We find that many
 of the Trajectories have a large deviation of more than 1000 from zero.
-
+ 
 However $x=0$ is the intuitive value one would expect from looking only at the distribution plot of the Cauchy distribution.
 This is due to the infinite MSD and because the average value can take arbitrary values as shown above.
-
-
-
+ 
+ 
+ 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.45\linewidth]{./figures/JanWeinreich_P1_4a.png}
@@ -244,7 +244,7 @@ This is due to the infinite MSD and because the average value can take arbitrary
     over $N=200$ independent trajectories.}
     \label{fig:abb6}
   \end{figure}
-
+ 
   Next we consider the running average of the particle positions over $N=200$ independent trajectories.
   \begin{align}
     \bar{x}_{n} = \sum_{i=0}^{n-1} x_{i}/n
@@ -252,22 +252,25 @@ This is due to the infinite MSD and because the average value can take arbitrary
   We find that the running average converges very fast for the gaussian distribution. For the 
   Cauchy distribution However we find very large deviation from the intuitive but wrong 
   expectation value zero. This is again due to the fact that the expectation value is ill defined
-  and due to infinite standart deviation. Thus we cannot expected this quantities to be defined and
+  and due to infinite standard deviation. Thus we cannot expected this quantities to be defined and
   this will not be different for large sampling sizes.
-
-
-
+ 
+ 
+ 
   Next we consider the distribution of the mean values of the 
   Cauchy random walks, shown in Fig.~\ref{fig:abb7}.
-  It appears the average value is equally distribed with accross the real numbers.
+  It appears the average value is equally distributed across the real numbers.
   This is plausible because we have shown that the first momentum of
   the Cauchy distribution can take arbitrary values.
   \begin{figure}[H]
     \centering
       \includegraphics[width=0.45\linewidth]{./figures/JanWeinreich_P1_4c.png}
-      \caption{In blue: Distibution of the average positions of 200 independent
+      \caption{In blue: Distribution of the average positions of 200 independent
       Cauchy Walkers. }
       \label{fig:abb7}
     \end{figure}
-
+ 
 \end{document}
+ 
+ 
+ 
