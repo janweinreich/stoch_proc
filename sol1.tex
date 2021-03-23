@@ -3,6 +3,9 @@
 \usepackage{geometry}
 \usepackage{svg}
 \usepackage{float}
+\usepackage{hyperref}
+\usepackage{hyperref,graphicx}    
+ 
 \usepackage{caption}
 \usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
 \usepackage{fancyhdr}
@@ -64,8 +67,8 @@
   \centering
     \includegraphics[width=0.45\linewidth]{./figures/JanWeinreich_P1_1a.png}
     \includegraphics[width=0.45\linewidth]{./figures/JanWeinreich_P1_1b.png}
-    \caption{Left: Mean squared deviation of a random walker with gaussian noise, 
-             numerical (num) and theoretical curve (ex).  
+    \caption{Left: Mean squared deviation $\langle x^2 \rangle$ of a random walker with gaussian noise, 
+             numerical (num) and theoretical curve (ex) with $\langle x^2 \rangle$ = n.  
              Right: Histogram of random walker position $x$ after $n=2, 5, 20, 100$ steps and solution to the diffusion 
              Eq.~(\ref{eq:diff1}) for $t= n=100$.}
     \label{fig:abb1}
@@ -78,20 +81,23 @@ initially at $x=0$ for $t=0$ to be located at position $x$ at time $t$ is given 
 \begin{align}
     \rho (x, t) = \frac{1}{\sqrt{4 \pi t}} \exp{   \left( -\frac{x^2}{4Dt} \right) }
 \end{align}  
-The mean squared deviation $  \langle x^2 \rangle $ is the second momentum of the 
-probability distribution since the first momentum is zero because $\mu(\rho)$ = 0.
+The mean squared deviation $  \langle x^2 \rangle $ is the second moment of the 
+probability distribution and also the variance of $\rho$
+since the first moment is zero because $\mu(\rho)$ = 0 and
+$\text{Var}(\rho) =  \langle x^2 \rangle -  \langle x \rangle^2$ .
 Thus we have,
 \begin{align}
   \langle x^2 \rangle = \int_{-\infty}^{+\infty} dx \rho (x, t) x^2 = 2 Dt
   \label{eq:diff1}
 \end{align}
-In Fig.~\ref{fig:abb1} we show Eq.~\ref{{eq:diff1} for $D=1$ and $t= n=100$.
+In Fig.~\ref{fig:abb1} (left) we show the MSD from $10000$ independent Gaussian random walks with $n=100$ steps each.
+We find the expected linear increase with the number of steps (time) with a diffusion constant of $D=\frac{1}{2}$.
+In Fig.~\ref{fig:abb1} (right) we show Eq.~\ref{eq:diff1} for $D=\frac{1}{2}$ and $t= n=100$ and we see
+that the prediction by the diffusion equation matches perfectly to an estimated density distribution obtained 
+by the simulation.
+\\
  
- 
- 
- 
- 
-We consider a walker with steps of fixed size $\Delta x = \pm 1 $ with equal probabilities for  both directions.
+Now we consider a walker with steps of fixed size $\Delta x = \pm 1 $ with equal probabilities for  both directions.
 We introduce a random variable $s_i$:
 \[   
 s_i = 
@@ -128,9 +134,18 @@ equal positive and negative amplitude.
  
  
 In Fig.~\ref{fig:abb2} we see that the main difference between the solution to the diffusion
-problem with $\Delta x = \pm 1$ and gaussian noise is the prefactor in the diffusion constant.
-The mean squared displacement (MSD) from the diffusion equation is twice as large which leads to
+problem with $\Delta x = \pm 1$ and Gaussian noise is the prefactor in the diffusion constant.
+ 
+\begin{align}
+  \text{Smoluchowski: }
+  \langle x^2 \rangle = n \leftrightarrow \text{ Einstein:}
+  \langle x^2 \rangle = 2 D t
+\end{align}
+Thus effectively the MSD deviations of both solutions only differ by a factor of two.
+The mean squared displacement (MSD) of the diffusion equation is twice as large which leads to
 a wider spread of $\rho$ compared to the Stirling approximation.
+ 
+ 
  
 \section{Weird and Strange Walkers}
  
@@ -146,10 +161,9 @@ We find that the motion appears to be restricted to a certain radius from the or
 To confirm this suspicion we compute the MSD as shown in Fig.~\ref{fig:abb4}. We find that the 
 MSD appears to have an upper limit at $\lim_{t \rightarrow \infty} \langle x^2 \rangle (t) = 2$.
 Occasionally this barrier can be overcome, but on average the motion is restricted to within a
-radius of $\sqrt{2}$ which is shown as a red circle in Fig.~\ref{fig:abb3}. Thus this data cannot
-originate from the Brownian motion of a solute particle in water. An alternative explanation would be that
-there is an isotropic force that pulls the walkter back to the center.
- 
+radius of $\sqrt{2}$ which is shown as a red circle in Fig.~\ref{fig:abb3}. An alternative explanation would be that
+there is an isotropic force that pulls the walker back to the center.
+Thus this data cannot originate from the Brownian motion of a solute particle in water unless maybe the container of the liquid is just as large as the mentioned barrier.
  
 \begin{figure}[H]
   \centering
@@ -220,7 +234,7 @@ that the limit is not defined:
    \frac{1}{ 2 \pi} \log(a^2)
 \end{align}
 Thus the average value can take an arbitrary value and is not uniquely defined.
-The same is true for  \langle | x |  \rangle 
+The same is true for $ \langle | x |  \rangle $.
 Next we compute the second moment:
 \begin{align}
   \langle x^2 \rangle =\frac{1}{\pi} \int_{-\infty}^{+\infty} \frac{x^2}{1+x^2} dx =
@@ -229,7 +243,7 @@ Next we compute the second moment:
 \end{align}
  
 Below we show 10 Cauchy-random walks with $n=200$ steps (s. Fig.~\ref{fig:abb6}). We find that many
-of the Trajectories have a large deviation of more than 1000 from zero.
+of the trajectories have a large deviation of more than 1000 from zero.
  
 However $x=0$ is the intuitive value one would expect from looking only at the distribution plot of the Cauchy distribution.
 This is due to the infinite MSD and because the average value can take arbitrary values as shown above.
@@ -249,7 +263,7 @@ This is due to the infinite MSD and because the average value can take arbitrary
   \begin{align}
     \bar{x}_{n} = \sum_{i=0}^{n-1} x_{i}/n
   \end{align}
-  We find that the running average converges very fast for the gaussian distribution. For the 
+  We find that the running average converges very fast for the Gaussian distribution. For the 
   Cauchy distribution However we find very large deviation from the intuitive but wrong 
   expectation value zero. This is again due to the fact that the expectation value is ill defined
   and due to infinite standard deviation. Thus we cannot expected this quantities to be defined and
@@ -260,17 +274,15 @@ This is due to the infinite MSD and because the average value can take arbitrary
   Next we consider the distribution of the mean values of the 
   Cauchy random walks, shown in Fig.~\ref{fig:abb7}.
   It appears the average value is equally distributed across the real numbers.
-  This is plausible because we have shown that the first momentum of
+  This is plausible because we have shown that the first moment of
   the Cauchy distribution can take arbitrary values.
+  This is very counter-intuitive since the most likely interval (maximum of Cauchy) is around zero.
   \begin{figure}[H]
     \centering
       \includegraphics[width=0.45\linewidth]{./figures/JanWeinreich_P1_4c.png}
       \caption{In blue: Distribution of the average positions of 200 independent
-      Cauchy Walkers. }
+      Cauchy Walkers. Orange: Cauchy Distribution, the heavy tail prohibits convergence of the first two moments of the distribution.}
       \label{fig:abb7}
     \end{figure}
  
 \end{document}
- 
- 
- 
