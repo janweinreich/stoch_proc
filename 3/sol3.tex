@@ -1,0 +1,248 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{svg}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{hyperref,graphicx}    
+ 
+\usepackage{caption}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+ 
+\pagestyle{empty}
+\titleformat*{\section}{\large\bfseries}
+ 
+%
+\geometry{
+ a4paper,
+ total={170mm,240mm},
+ left=20mm,
+ top=30mm,
+ }
+ 
+\date{}
+%Bitte ausfüllen
+\newcommand\course{Stochastic Processes in Physics}
+\newcommand\hwnumber{1}
+\newcommand\Name{Jan Weinreich}
+\newcommand\Neptun{Uni Vienna}
+ 
+%Matheinheiten
+\newcommand\m{\:\textrm{m}}
+\newcommand\M{\:\Big[\textrm{m}\Big]}
+\newcommand\mm{\:\textrm{mm}}
+\newcommand\MM{\:\Big[\textrm{mm}\Big]}
+\newcommand\un{\underline}
+\newcommand\s{\:\textrm{s}}
+\newcommand\bS{\:\Big[\textrm{S}\Big]}
+\newcommand\ms{\:\frac{\textrm{m}}{\textrm{s}}}
+\newcommand\MS{\:\Big[\frac{\textrm{m}}{\textrm{s}}\Big]}
+\newcommand\mss{\:\frac{\textrm{m}}{\textrm{s}^2}}
+\newcommand\MSS{\:\Big[\frac{\textrm{m}}{\textrm{s}^2}\Big]}
+ 
+%Bitte nicht einstellen
+\renewcommand{\figurename}{Abbildung}
+\renewcommand{\tablename}{Tabelle}
+\pagestyle{fancyplain}
+\headheight 35pt
+\lhead{\Name\\\Neptun}
+\chead{\textbf{\Large Hausaufgabe \hwnumber}}
+\rhead{\course \\ \today}
+\lfoot{}
+\cfoot{}
+\rfoot{\small\thepage}
+\headsep 1.5em
+ 
+\begin{document}
+ 
+ 
+ 
+%include svg files
+ 
+ 
+\section{Random Walks}
+
+ 
+The solution for the probability density $\rho$ for a particle
+initially at $x=0$ for $t=0$ to be located at position $x$ at time $t$ is given by
+ 
+\begin{align}
+    \rho (x, t) = \frac{1}{\sqrt{4 \pi t}} \exp{   \left( -\frac{x^2}{4Dt} \right) }
+\end{align}  
+The mean squared deviation $  \langle x^2 \rangle $ is the second moment of the 
+probability distribution and also the variance of $\rho$
+since the first moment is zero because $\mu(\rho)$ = 0 and
+$\text{Var}(\rho) =  \langle x^2 \rangle -  \langle x \rangle^2$ .
+Thus we have,
+\begin{align}
+  \langle x^2 \rangle = \int_{-\infty}^{+\infty} dx \rho (x, t) x^2 = 2 Dt
+  \label{eq:diff1}
+\end{align}
+In Fig.~\ref{fig:abb1} (left) we show the MSD from $10000$ independent Gaussian random walks with $n=100$ steps each.
+We find the expected linear increase with the number of steps (time) with a diffusion constant of $D=\frac{1}{2}$.
+In Fig.~\ref{fig:abb1} (right) we show Eq.~\ref{eq:diff1} for $D=\frac{1}{2}$ and $t= n=100$ and we see
+that the prediction by the diffusion equation matches perfectly to an estimated density distribution obtained 
+by the simulation.
+\\
+ 
+Now we consider a walker with steps of fixed size $\Delta x = \pm 1 $ with equal probabilities for  both directions.
+We introduce a random variable $s_i$:
+\[   
+s_i = 
+     \begin{cases}
+       +1 & \text{, if }\Delta x = +1\\
+       -1 & \text{, if }\Delta x = -1 \\
+     \end{cases}
+\]
+ 
+ 
+ 
+\begin{align}
+  \langle x^2 \rangle  = \sum_{i, j}^n s_i s_j = \sum_{i}^n s_i s_i  + \sum_{i \neq j}^n s_i s_j
+  = \sum_{i}^n s_i s_i  = \sum_{i}^n s_{i}^2 = \sum_{i}^n s_i s_i  = \sum_{i}^n 1 = n  
+\end{align}
+Note that the sum $\sum_{i \neq j}^n s_i s_j$ averages to zero, since the contributions are alternating with
+equal positive and negative amplitude.
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+In Fig.~\ref{fig:abb2} we see that the main difference between the solution to the diffusion
+problem with $\Delta x = \pm 1$ and Gaussian noise is the prefactor in the diffusion constant.
+ 
+\begin{align}
+  \text{Smoluchowski: }
+  \langle x^2 \rangle = n \leftrightarrow \text{ Einstein:}
+  \langle x^2 \rangle = 2 D t
+\end{align}
+Thus effectively the MSD deviations of both solutions only differ by a factor of two.
+The mean squared displacement (MSD) of the diffusion equation is twice as large which leads to
+a wider spread of $\rho$ compared to the Stirling approximation.
+ 
+ 
+ 
+\section{Weird and Strange Walkers}
+ 
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.45\linewidth]{./figures/trajectory_weirdwalker.png}
+    \caption{Trajectory of the 2-dimensional continuous weird walker in blue. We find that the 
+            motion is somewhat restricted to the area encircled in red.}
+    \label{fig:abb3}
+  \end{figure}
+In Fig.~\ref{fig:abb3} we show the motion of the 2-dimensional continuous weird walker.
+We find that the motion appears to be restricted to a certain radius from the origin at $(0,0)$.
+To confirm this suspicion we compute the MSD as shown in Fig.~\ref{fig:abb4}. We find that the 
+MSD appears to have an upper limit at $\lim_{t \rightarrow \infty} \langle x^2 \rangle (t) = 2$.
+Occasionally this barrier can be overcome, but on average the motion is restricted to within a
+radius of $\sqrt{2}$ which is shown as a red circle in Fig.~\ref{fig:abb3}. An alternative explanation would be that
+there is an isotropic force that pulls the walker back to the center.
+Thus this data cannot originate from the Brownian motion of a solute particle in water unless maybe the container of the liquid is just as large as the mentioned barrier.
+
+ 
+ 
+Next we consider the Strange walker in 2-dim and study a plot of its MSD in Fig.~\ref{fig:abb4}. We find
+that the MSD increases linearly as it would be expected for a typical diffusion process (apart from the fact
+that the motion is not continuous). To compute the MSD the average was computed over all 350 trajectories.
+ 
+
+ 
+ 
+\section{Cauchy Walkers}
+ 
+We show that the standard-Cauchy distribution is normalized. Start with:
+\begin{align}
+  \int_{-\infty}^{+\infty} \frac{1}{1+x^2}
+\end{align}
+Very obvious and trivial substitution $x:=\tan(z)$, thus:
+\begin{align}
+  \frac{dx}{dz} = \frac{1}{\cos^2(z)} \rightarrow dx = \frac{dz}{\cos^2(z)}~.
+\end{align}
+This is very helpful as it simplifies the integration:
+\begin{align}
+  \int_{-\infty}^{+\infty} \frac{1}{1+x^2} =
+   \int_{-\infty}^{+\infty} \frac{1}{1+\tan^2(z)}  \frac{dz}{\cos^2(z)} = \int dz = z
+\end{align}
+Here we use the widely known fact that:
+\begin{align}
+  1+\tan^2(z) = \frac{1}{\cos^2(z)}
+\end{align}
+Thus we find that:
+\begin{align}
+  \int_{-\infty}^{+\infty} \frac{1}{1+x^2} = \arctan(+\infty) - \arctan(-\infty) = \frac{\pi}{2} - (-\frac{\pi}{2} ) = \pi ~.
+\end{align}
+And thus:
+\begin{align}
+  \begin{align}
+    \frac{1}{\pi} \int_{-\infty}^{+\infty} \frac{1}{1+x^2} = 1
+  \end{align}
+\end{align}
+ 
+Next we try the impossible: To compute the average value of the standard Cauchy distribution:
+\begin{align}
+  \langle x \rangle = \frac{1}{\pi}  \int_{-\infty}^{+\infty} \frac{x}{1+x^2}
+\end{align}
+The following substitution is used:
+\begin{align}
+  1+x^2 = u \rightarrow \langle x \rangle = \frac{1}{2 \pi} \int_{-\infty}^{+\infty}  \frac{1}{u} du \\
+  =   \log(x^2+1) |_{-\infty}^{+\infty} = \log(\infty) - \log(-\infty)
+\end{align}
+The log of a negative number is not defined in terms of real numbers. We shall provide a more convincing proof
+that the limit is not defined:
+\begin{align}
+  \langle x \rangle = 
+  \lim_{T \rightarrow \infty} \int_{-T}^{aT} \frac{x}{\pi} \frac{1}{1+x^2} dx =
+  \lim_{T \rightarrow \infty} \frac{1}{2 \pi} \log\left(\frac{1+(aT)^2}{1+T^2} \right) =  \\
+  \frac{1}{2 \pi} \lim_{T \rightarrow \infty} 
+   \log\left(  \frac{   T^{2} ( T^{-2}+a^2)}{ T^2 ( T^{-2} +1)} \right) =
+   \frac{1}{ 2 \pi} \log(a^2)
+\end{align}
+Thus the average value can take an arbitrary value and is not uniquely defined.
+The same is true for $ \langle | x |  \rangle $.
+Next we compute the second moment:
+\begin{align}
+  \langle x^2 \rangle =\frac{1}{\pi} \int_{-\infty}^{+\infty} \frac{x^2}{1+x^2} dx =
+  \frac{1}{\pi} \int_{-\infty}^{+\infty} \frac{1+x^2-1}{1+x^2} dx =
+  \frac{1}{\pi} \left(\int_{-\infty}^{+\infty} dx - \pi \right) = \infty
+\end{align}
+ 
+Below we show 10 Cauchy-random walks with $n=200$ steps (s. Fig.~\ref{fig:abb6}). We find that many
+of the trajectories have a large deviation of more than 1000 from zero.
+ 
+However $x=0$ is the intuitive value one would expect from looking only at the distribution plot of the Cauchy distribution.
+This is due to the infinite MSD and because the average value can take arbitrary values as shown above.
+ 
+ 
+ 
+
+ 
+  Next we consider the running average of the particle positions over $N=200$ independent trajectories.
+  \begin{align}
+    \bar{x}_{n} = \sum_{i=0}^{n-1} x_{i}/n
+  \end{align}
+  We find that the running average converges very fast for the Gaussian distribution. For the 
+  Cauchy distribution However we find very large deviation from the intuitive but wrong 
+  expectation value zero. This is again due to the fact that the expectation value is ill defined
+  and due to infinite standard deviation. Thus we cannot expected this quantities to be defined and
+  this will not be different for large sampling sizes.
+ 
+ 
+ 
+  Next we consider the distribution of the mean values of the 
+  Cauchy random walks, shown in Fig.~\ref{fig:abb7}.
+  It appears the average value is equally distributed across the real numbers.
+  This is plausible because we have shown that the first moment of
+  the Cauchy distribution can take arbitrary values.
+  This is very counter-intuitive since the most likely interval (maximum of Cauchy) is around zero.
+
+ 
+\end{document}

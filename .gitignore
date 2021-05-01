@@ -13,5 +13,5 @@
 !.git/*
 !.ipynb_checkpoints
 !.ipynb_checkpoints/*
-!.tex
+!*.tex
 *pdf
